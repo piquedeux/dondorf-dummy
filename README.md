@@ -1,9 +1,7 @@
 # dondorf-dummy
 
-A **sanitized showcase** of a bilingual (German/English) event and community-space
-website built with [Kirby CMS](https://getkirby.com) 5. It is a stripped-down copy of a
-real project, published to demonstrate the **setup, structure and code** — not the
-content.
+A showcase website built with [Kirby CMS](https://getkirby.com) 5. It is a stripped-down copy of a
+real project, published to demonstrate the **setup, structure and code** — not the content.
 
 > ⚠️ **All content in this repository is placeholder data.**
 > There are no real credentials, personal data, license keys or production content here.
@@ -33,8 +31,8 @@ JavaScript modules — there is no frontend framework and no build step.
 
 ## Tech stack
 
-| Layer      | Choice                                                        |
-|------------|---------------------------------------------------------------|
+| Layer      | Choice                                                         |
+| ---------- | -------------------------------------------------------------- |
 | CMS        | Kirby 5 (`getkirby/cms`)                                       |
 | Language   | PHP 8.1+                                                       |
 | Templates  | Kirby PHP templates + snippets                                 |
@@ -80,11 +78,11 @@ Environment variables are loaded from `.env` by [`index.php`](./index.php) and
 [`site/config/config.php`](./site/config/config.php):
 
 | Variable             | Purpose                                             |
-|----------------------|-----------------------------------------------------|
+| -------------------- | --------------------------------------------------- |
 | `KIRBY_CONTENT_SALT` | Salt for encrypted content (regenerate per install) |
 | `KIRBY_COOKIE_KEY`   | Signing key for cookies                             |
 | `SMTP_HOST`          | Mail server host                                    |
-| `SMTP_PORT`          | Mail server port (default `587`)                     |
+| `SMTP_PORT`          | Mail server port (default `587`)                    |
 | `SMTP_SECURITY`      | `tls` or `ssl`                                      |
 | `SMTP_USERNAME`      | SMTP user                                           |
 | `SMTP_PASSWORD`      | SMTP password                                       |
@@ -160,7 +158,7 @@ Events are defined either as **structured entries** on the site (`Events` struct
 `content/site.txt`) or as **event pages** under `content/events/`.
 [`site/plugins/content-storage/events.php`](./site/plugins/content-storage/events.php)
 expands recurring events (`wiederholung`: `daily`/`weekly`/`monthly`, with `wiederholen_bis`)
-into individual **occurrences** and overlays per-date *exceptions* (cancelled / rescheduled).
+into individual **occurrences** and overlays per-date _exceptions_ (cancelled / rescheduled).
 [`site/snippets/calendar.php`](./site/snippets/calendar.php) renders upcoming and regular
 events; the JS in [`assets/js/calendar.js`](./assets/js/calendar.js) and
 [`assets/js/event-modal.js`](./assets/js/event-modal.js) provide filtering and the detail modal.
@@ -194,11 +192,11 @@ and exposes `$site->hitsCount()` / `$site->statsOverview()`.
 
 These are project-specific and live in `site/plugins/`:
 
-| Plugin            | Purpose                                                              |
-|-------------------|----------------------------------------------------------------------|
+| Plugin            | Purpose                                                                         |
+| ----------------- | ------------------------------------------------------------------------------- |
 | `content-storage` | Mirrors site fields into `content/site-sections/*` and expands recurring events |
-| `page-stats`      | File-based page-view counter                                        |
-| `mailchimp`       | Newsletter subscription against the Mailchimp API                   |
+| `page-stats`      | File-based page-view counter                                                    |
+| `mailchimp`       | Newsletter subscription against the Mailchimp API                               |
 
 ## Third-party plugins (installed via Composer)
 
