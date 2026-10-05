@@ -1,0 +1,86 @@
+title: Anfrage
+
+columns:
+  - width: 2/3
+    sections:
+      details:
+        type: info
+        theme: positive
+        text: |
+          Kontakt
+          Name: {{ page.name }}
+          E-Mail: {{ page.email }}
+          Telefon: {{ page.phone }}
+          
+          Veranstaltung
+          Datum: {{ page.date.toDate('d.m.Y') }}
+          Gäste: {{ page.guests }}
+          
+          Nachricht
+          {{ page.message }}
+      
+      fields:
+        type: fields
+        fields:
+          status:
+            label: Status
+            type: select
+            width: 1/2
+            options:
+              pending: Ausstehend
+              confirmed: Bestätigt
+              cancelled: Abgesagt
+            default: pending
+          
+          notes:
+            label: Interne Notizen
+            type: textarea
+            help: Notizen zur Anfrage (nicht sichtbar für Kunden)
+  
+  - width: 1/3
+    sections:
+      actions:
+        type: info
+        theme: info
+        text: |
+          Aktionen
+          
+          E-Mail senden: mailto:{{ page.email }}
+          Anrufen: tel:{{ page.phone }}
+      
+      meta:
+        type: fields
+        fields:
+          divider:
+            type: line
+          
+          name:
+            label: Name
+            type: text
+            disabled: true
+          
+          email:
+            label: E-Mail
+            type: email
+            disabled: true
+          
+          phone:
+            label: Telefon
+            type: text
+            disabled: true
+          
+          date:
+            label: Datum
+            type: date
+            disabled: true
+          
+          guests:
+            label: Gäste
+            type: text
+            disabled: true
+          
+          message:
+            label: Nachricht
+            type: textarea
+            disabled: true
+            buttons: false

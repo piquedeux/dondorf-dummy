@@ -1,0 +1,22 @@
+title: Editor
+
+permissions:
+  access:
+    panel: true
+    users: false
+    site: true
+    settings: false
+  pages: true
+  files: true
+  users:
+    create: false
+    update: false
+    delete: false
+    changeRole: false
+
+sections:
+  info:
+    type: info
+    theme: info
+    text: |
+      Editor mit Zugriff auf Inhalte und Dateien

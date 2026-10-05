@@ -1,0 +1,30 @@
+title: Veranstaltungen
+icon: calendar
+
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+sections:
+  events:
+    type: pages
+    headline: Veranstaltungen
+    template: event
+    status: all
+    layout: table
+    sortBy: date desc
+    create: event
+    columns:
+      date:
+        label: Datum
+        value: "{{ page.date.toDate('d.m.Y') }}"
+      time:
+        label: Zeit
+        value: "{{ page.time }}"
+      event_type:
+        label: Typ
+        value: "{{ page.event_type }}"
+      location:
+        label: Ort
+        value: "{{ page.location }}"

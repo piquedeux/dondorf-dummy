@@ -1,0 +1,33 @@
+/* Info Section Styles */
+.info-section {
+  position: relative;
+}
+
+.info-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: calc(var(--item-index) * 0.1s);
+  margin-bottom: 1.5rem;
+}
+
+.info-content.active .info-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure proper spacing */
+.dondorf-info {
+  font-size: var(--text-md);
+  line-height: 1.6;
+}
+
+.dondorf-info p {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .info-item {
+    transition-delay: calc(var(--item-index) * 0.08s);
+  }
+}

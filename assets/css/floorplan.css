@@ -1,0 +1,416 @@
+/* Floorplan Styles */
+.floorplan-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow-x: hidden;
+}
+
+.floorplan-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 40px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.floorplan-grid {
+  border: 2px solid var(--text-color);
+  padding: 40px;
+  position: relative;
+  background: var(--background-color);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.floorplan-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: var(--text-lg);
+}
+
+.floorplan-rooms {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(7, 60px);
+  gap: 4px;
+  position: relative;
+  width: 100%;
+}
+
+.room {
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(0.6rem, 1.2vw, 1rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px;
+  line-height: 1.2;
+}
+
+.room .label-mobile {
+  display: none;
+}
+
+.room .label-full {
+  display: inline;
+}
+
+
+.room:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.room.highlighted {
+  box-shadow: 0 0 0 3px var(--color-red, #b94329);
+  z-index: 20;
+  transform: scale(1.08);
+}
+
+.room.beratungsraum {
+  border-color: #718D7B;
+}
+
+.room.studio {
+  border-color: #3D617D;
+}
+
+.room.vorraum {
+  border-color: var(--color-red, #b94329);
+}
+
+/* On hover or highlighted: primary border with colored background */
+.room.beratungsraum:hover,
+.room.beratungsraum.highlighted {
+  border-color: var(--primary-color);
+  background-color: #718D7B;
+  color: var(--background-color);
+}
+
+.room.studio:hover,
+.room.studio.highlighted {
+  border-color: var(--primary-color);
+  background-color: #3D617D;
+  color: var(--background-color);
+}
+
+.room.vorraum:hover,
+.room.vorraum.highlighted {
+  border-color: var(--primary-color);
+  background-color: #ECE7B0;
+  color: #574038;
+}
+
+.room-info {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: var(--background-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 1000;
+  font-size: var(--text-sm);
+}
+
+.room:hover .room-info {
+  opacity: 1;
+}
+
+.floorplan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid var(--text-color);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+}
+
+.legend-color {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--text-color);
+  background: transparent;
+}
+
+.legend-color.beratungsraum {
+  border-color: #718D7B;
+}
+
+.legend-color.studio {
+  border-color: #3D617D;
+}
+
+.legend-color.vorraum {
+  border-color: var(--color-red, #b94329);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .floorplan-section {
+    padding: 20px 0;
+  }
+
+  .floorplan-container {
+    padding: 0 10px;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .floorplan-grid {
+    padding: 10px;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .floorplan-rooms {
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(7, 30px);
+    gap: 2px;
+    width: 100%;
+  }
+
+  .room {
+    font-size: 0.55rem;
+    padding: 2px;
+    line-height: 1.1;
+    border-width: 1px;
+  }
+
+  .room .label-full {
+    display: none;
+  }
+
+  .room .label-mobile {
+    display: inline;
+  }
+
+  .room .label-size {
+    display: none;
+  }
+
+  .room:hover {
+    transform: none;
+  }
+
+  .floorplan-legend {
+    margin-top: 20px;
+    gap: 10px;
+    padding: 15px 10px;
+  }
+
+  .legend-item {
+    font-size: 0.75rem;
+  }
+
+  .legend-color {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .floorplan-container {
+    padding: 0 20px;
+  }
+
+  .floorplan-grid {
+    padding: 30px;
+  }
+
+  .floorplan-rooms {
+    grid-template-rows: repeat(7, 50px);
+  }
+
+  .room {
+    font-size: clamp(0.5rem, 1vw, 0.9rem);
+  }
+}
+
+@media (min-width: 1201px) {
+  .floorplan-container {
+    max-width: 1400px;
+    padding: 0 40px;
+  }
+
+  .floorplan-rooms {
+    grid-template-rows: repeat(7, 70px);
+  }
+}
+
+.lageplan-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.lageplan-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lageplan-image-trigger {
+  width: 100%;
+  border: 2px solid var(--text-color);
+  background: var(--background-color);
+  padding: 0;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.lageplan-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.lageplan-wegbeschreibung {
+  border: 2px solid var(--text-color);
+  padding: 16px;
+  background: var(--background-color);
+}
+
+.lageplan-maps-embed {
+  width: 100%;
+  border: 2px solid var(--text-color);
+  overflow: hidden;
+}
+
+.lageplan-maps-embed iframe {
+  width: 100%;
+  min-height: 380px;
+  border: 0;
+  display: block;
+}
+
+.lageplan-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lageplan-lightbox.active {
+  display: flex;
+}
+
+.lageplan-lightbox-inner {
+  width: min(1280px, 100%);
+  height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  position: relative;
+}
+
+.lageplan-lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--text-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.lageplan-lightbox-stage {
+  flex: 1;
+  min-height: 320px;
+  overflow: auto;
+  cursor: zoom-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.lageplan-lightbox-stage::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.lageplan-lightbox-image {
+  transform-origin: center center;
+  transition: transform 0.15s ease;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.lageplan-lightbox-controls {
+  display: none;
+}
+
+.lageplan-lightbox-controls button {
+  border: 2px solid var(--text-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .lageplan-lightbox {
+    padding: 10px;
+  }
+
+  .lageplan-lightbox-inner {
+    max-height: calc(100vh - 20px);
+    padding: 10px;
+  }
+
+  .lageplan-lightbox-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .lageplan-maps-embed iframe {
+    min-height: 300px;
+  }
+}

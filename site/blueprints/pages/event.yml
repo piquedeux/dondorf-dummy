@@ -1,0 +1,193 @@
+title: Veranstaltung
+icon: calendar
+num: date
+
+tabs:
+  content:
+    label: Inhalt
+    icon: text
+    fields:
+      title_de:
+        label: Titel (DE)
+        type: text
+        required: true
+      title_en:
+        label: Title (EN)
+        type: text
+      event_type:
+        label: Typ
+        type: select
+        default: upcoming
+        options:
+          upcoming: Veranstaltung
+          regular: Regelmäßige Veranstaltung
+      date:
+        label: Datum / Startdatum
+        type: date
+        format: d.m.Y
+        help: "Bei regelmäßigen Veranstaltungen: erstes Datum der Reihe"
+      time:
+        label: Uhrzeit / Rhythmus
+        type: text
+        placeholder: "z.B. 18:00 - 22:00 oder jeden Donnerstag, 19:00"
+      time_en:
+        label: Time / Rhythm (EN)
+        type: text
+      location:
+        label: Ort / Raum
+        type: text
+      room_link:
+        label: Raum-Zuordnung (Lageplan)
+        type: select
+        empty: Kein Raum
+        options:
+          type: query
+          query: site.rooms.toStructure
+          text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+          value: "{{ item.id }}"
+      description_de:
+        label: Beschreibung (DE)
+        type: textarea
+      description_en:
+        label: Description (EN)
+        type: textarea
+      images:
+        label: Bilder zur Veranstaltung
+        type: files
+      tags:
+        label: Tags (Komma getrennt)
+        type: text
+        help: "z. B. workshop, ausstellung"
+
+  details:
+    label: Details
+    icon: dots
+    fields:
+      initiative_link:
+        label: Initiative / Kollektiv (Verknüpfen)
+        type: select
+        empty: Keine Initiative
+        options:
+          type: query
+          query: site.initiativen.toStructure
+          text: "{{ item.title_de.or(item.title_en) }}"
+          value: "{{ item.title_de.or(item.title_en) }}"
+      initiative:
+        label: Initiative / Kollektiv (Freitext)
+        type: text
+        placeholder: "z.B. interzoen"
+        help: "Optional, falls keine Auswahl genutzt wird"
+      event_exceptions:
+        label: Einzelne Termine ändern / absagen
+        type: structure
+        help: "Wähle das ursprüngliche Datum eines einzelnen Termins. Nur dieser Termin wird geändert. Leere Angaben übernehmen die Werte der Reihe. Lösche die Ausnahme, um den ursprünglichen Termin wiederherzustellen."
+        sortBy: original_date asc
+        columns:
+          original_date: true
+          cancelled: true
+          date: true
+          title_de: true
+        fields:
+          original_date:
+            label: Ursprüngliches Datum
+            type: date
+            format: d.m.Y
+            required: true
+            help: "Das Datum der Wiederholung, die du ändern möchtest. Jedes Datum nur einmal eintragen."
+          cancelled:
+            label: Dieser Termin fällt aus
+            type: toggle
+            default: false
+            text: [Nein, Ja]
+            help: "Der Termin bleibt mit dem Hinweis Fällt aus sichtbar. Alle anderen Wiederholungen finden weiterhin statt."
+          date:
+            label: Abweichendes Datum
+            type: date
+            format: d.m.Y
+          title_de:
+            label: Abweichender Titel (DE)
+            type: text
+          title_en:
+            label: Abweichender Titel (EN)
+            type: text
+          time:
+            label: Abweichende Uhrzeit (DE)
+            type: text
+          time_en:
+            label: Abweichende Uhrzeit (EN)
+            type: text
+          location:
+            label: Abweichender Ort
+            type: text
+          room_link:
+            label: Abweichender Raum (Lageplan)
+            type: select
+            options:
+              type: query
+              query: site.rooms.toStructure
+              text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+              value: "{{ item.id }}"
+          description_de:
+            label: Beschreibung / Absagegrund (DE)
+            type: textarea
+          description_en:
+            label: Description / cancellation reason (EN)
+            type: textarea
+          images:
+            label: Abweichende Bilder
+            type: files
+          tags:
+            label: Abweichende Tags
+            type: text
+          initiative_link:
+            label: Abweichende Initiative
+            type: select
+            options:
+              type: query
+              query: site.initiativen.toStructure
+              text: "{{ item.title_de.or(item.title_en) }}"
+              value: "{{ item.title_de.or(item.title_en) }}"
+          kapazitaet:
+            label: Abweichende Kapazität
+            type: number
+          social_1_label:
+            label: Link 1 Text
+            type: text
+          social_1_url:
+            label: Link 1 URL
+            type: url
+          social_2_label:
+            label: Link 2 Text
+            type: text
+          social_2_url:
+            label: Link 2 URL
+            type: url
+      wiederholung:
+        label: Wiederholung
+        type: select
+        options:
+          none: Keine
+          daily: Täglich
+          weekly: Wöchentlich
+          monthly: Monatlich
+        default: none
+      wiederholen_bis:
+        label: Wiederholen bis
+        type: date
+        format: d.m.Y
+        help: "Enddatum erforderlich bei Wiederholung (täglich, wöchentlich, monatlich)"
+      kapazitaet:
+        label: Kapazität
+        type: number
+      social_1_label:
+        label: Social Link 1 Label
+        type: text
+      social_1_url:
+        label: Social Link 1 URL
+        type: url
+      social_2_label:
+        label: Social Link 2 Label
+        type: text
+      social_2_url:
+        label: Social Link 2 URL
+        type: url

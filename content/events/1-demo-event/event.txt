@@ -1,0 +1,45 @@
+Title: Demo-Veranstaltung
+
+----
+
+Title-de: Demo-Veranstaltung
+
+----
+
+Title-en: Demo event
+
+----
+
+Event-type: workshop
+
+----
+
+Date: 2027-01-01
+
+----
+
+Time: '18:00-21:00'
+
+----
+
+Location: 'Demo Room, Example Street 1'
+
+----
+
+Description-de: Eine Beispielveranstaltung zur Demonstration des Kalenders.
+
+----
+
+Description-en: A sample event to demonstrate the calendar.
+
+----
+
+Tags: 'demo, example'
+
+----
+
+Initiative: 'Demo Initiative'
+
+----
+
+Wiederholung: none

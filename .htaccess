@@ -1,0 +1,76 @@
+# Kirby .htaccess
+
+# Rewrite rules
+<IfModule mod_rewrite.c>
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Set base if running in a subfolder
+# RewriteBase /
+
+# Block files and folders beginning with a dot, such as .git
+# except for the .well-known folder, which is used for Let's Encrypt and security.txt
+RewriteRule (^|/)\.(?!well-known\/) index.php [L]
+
+# Block all files in the content folder from being accessed directly
+RewriteRule ^content/(.*) index.php [L]
+
+# Block all files in the site folder from being accessed directly
+RewriteRule ^site/(.*) index.php [L]
+
+# Block direct access to Kirby and the Panel sources
+RewriteRule ^kirby/(.*) index.php [L]
+
+# Make site links work
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) index.php [L]
+
+</IfModule>
+
+# Increase PHP form input limits for large Kirby Panel forms
+<IfModule mod_php.c>
+php_value max_input_vars 5000
+php_value max_input_nesting_level 128
+</IfModule>
+
+# Fallback module names used by some Apache/PHP setups
+<IfModule mod_php8.c>
+php_value max_input_vars 5000
+php_value max_input_nesting_level 128
+</IfModule>
+
+# Fallback module names used by some Apache/PHP setups
+<IfModule mod_php7.c>
+php_value max_input_vars 5000
+php_value max_input_nesting_level 128
+</IfModule>
+
+# Pass the Authorization header to PHP
+SetEnvIf Authorization "(.+)" HTTP_AUTHORIZATION=$1
+
+# Compress text, html, javascript, css, xml and more
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Set correct MIME types
+<IfModule mod_mime.c>
+AddType image/svg+xml svg svgz
+AddType image/webp webp
+AddType application/woff woff
+AddType application/woff2 woff2
+AddType application/vnd.ms-fontobject eot
+AddType application/x-font-ttf ttf ttc
+AddType font/opentype otf
+</IfModule>

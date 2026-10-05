@@ -1,0 +1,748 @@
+title: Site
+
+tabs:
+  aufmacher:
+    label: Aufmacher
+    icon: image
+    sections:
+      help_info:
+        type: info
+        theme: info
+        text: "You need Help with something? Visit [piquedeux.de](https://piquedeux.de) for my contact information :)"
+      hero:
+        type: fields
+        fields:
+          logomark:
+            label: Logo (Logomark - im Header)
+            type: files
+            max: 1
+            help: Wird im Header angezeigt
+          logomark_colored:
+            label: Farbiges Logo (Logomark)
+            type: files
+            max: 1
+            help: Wird verwendet, wenn das farbige Theme aktiv ist
+          logo_wordmark:
+            label: Logo Wordmark (beim Scrollen)
+            type: files
+            max: 1
+            help: Wird beim Scrollen im Header angezeigt
+          logo_wordmark_colored:
+            label: Farbiges Logo Wordmark
+            type: files
+            max: 1
+            help: Wird beim Scrollen im Header angezeigt, wenn das farbige Theme aktiv ist
+          heading_welcome_de:
+            label: Überschrift Willkommen (DE)
+            type: text
+            default: Willkommen
+          heading_welcome_en:
+            label: Welcome Heading (EN)
+            type: text
+            default: Welcome
+          welcome_subtitle_de:
+            label: Willkommen Untertitel (DE)
+            type: text
+            help: Kurzer Untertitel unter der Willkommens-Überschrift
+          welcome_subtitle_en:
+            label: Welcome Subtitle (EN)
+            type: text
+            help: Short subtitle below the welcome heading
+          slideshow:
+            label: Slideshow
+            type: structure
+            fields:
+              image:
+                label: Bild
+                type: files
+                max: 1
+          aufmacher_text_de:
+            label: Aufmacher Text (DE)
+            type: textarea
+            help: Haupttext im Willkommensbereich
+          aufmacher_text_en:
+            label: Aufmacher Text (EN)
+            type: textarea
+            help: Main text in the welcome section
+          aufmacher_toggle_de:
+            label: Aufmacher Toggle Text (DE)
+            type: text
+            default: Entdecke mehr
+          aufmacher_toggle_en:
+            label: Aufmacher Toggle Text (EN)
+            type: text
+            default: Discover more
+
+  veranstaltungen:
+    label: Veranstaltungen
+    icon: calendar
+    sections:
+      events_section:
+        type: fields
+        fields:
+          heading_events_de:
+            label: Überschrift Veranstaltungen (DE)
+            type: text
+            default: Veranstaltungen
+          heading_events_en:
+            label: Events Heading (EN)
+            type: text
+            default: Events
+          heading_regular_events_de:
+            label: Überschrift Regelmäßige Veranstaltungen (DE)
+            type: text
+            default: Regelmäßige Veranstaltungen
+          heading_regular_events_en:
+            label: Heading Regular Events (EN)
+            type: text
+            default: Regular Events
+          events:
+            label: Veranstaltungen
+            type: structure
+            sortBy: date desc
+            sortable: false
+            columns:
+              title_de: true
+              date: true
+              time: true
+              freigabe_status: true
+              location: true
+              tags: true
+            fields:
+              event_exceptions:
+                label: Einzelne Termine ändern / absagen
+                type: structure
+                help: "Wähle das ursprüngliche Datum eines einzelnen Termins. Nur dieser Termin wird geändert. Leere Angaben übernehmen die Werte der Reihe. Lösche die Ausnahme, um den ursprünglichen Termin wiederherzustellen."
+                sortBy: original_date asc
+                columns:
+                  original_date: true
+                  cancelled: true
+                  date: true
+                  title_de: true
+                fields:
+                  original_date:
+                    label: Ursprüngliches Datum
+                    type: date
+                    format: d.m.Y
+                    required: true
+                    help: "Das Datum der Wiederholung, die du ändern möchtest. Jedes Datum nur einmal eintragen."
+                  cancelled:
+                    label: Dieser Termin fällt aus
+                    type: toggle
+                    default: false
+                    text: [Nein, Ja]
+                    help: "Der Termin bleibt mit dem Hinweis Fällt aus sichtbar. Alle anderen Wiederholungen finden weiterhin statt."
+                  date:
+                    label: Abweichendes Datum
+                    type: date
+                    format: d.m.Y
+                  title_de:
+                    label: Abweichender Titel (DE)
+                    type: text
+                  title_en:
+                    label: Abweichender Titel (EN)
+                    type: text
+                  time:
+                    label: Abweichende Uhrzeit (DE)
+                    type: text
+                  time_en:
+                    label: Abweichende Uhrzeit (EN)
+                    type: text
+                  location:
+                    label: Abweichender Ort
+                    type: text
+                  room_link:
+                    label: Abweichender Raum (Lageplan)
+                    type: select
+                    options:
+                      type: query
+                      query: site.rooms.toStructure
+                      text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+                      value: "{{ item.id }}"
+                  description_de:
+                    label: Beschreibung / Absagegrund (DE)
+                    type: textarea
+                  description_en:
+                    label: Description / cancellation reason (EN)
+                    type: textarea
+                  images:
+                    label: Abweichende Bilder
+                    type: files
+                  tags:
+                    label: Abweichende Tags
+                    type: text
+                  initiative_link:
+                    label: Abweichende Initiative
+                    type: select
+                    options:
+                      type: query
+                      query: site.initiativen.toStructure
+                      text: "{{ item.title_de.or(item.title_en) }}"
+                      value: "{{ item.title_de.or(item.title_en) }}"
+                  kapazitaet:
+                    label: Abweichende Kapazität
+                    type: number
+                  social_1_label:
+                    label: Link 1 Text
+                    type: text
+                  social_1_url:
+                    label: Link 1 URL
+                    type: url
+                  social_2_label:
+                    label: Link 2 Text
+                    type: text
+                  social_2_url:
+                    label: Link 2 URL
+                    type: url
+              title_de:
+                label: Titel (DE)
+                type: text
+              title_en:
+                label: Title (EN)
+                type: text
+              freigabe_status:
+                label: Status
+                type: select
+                options:
+                  vorgemerkt: Vorgemerkt
+                  veröffentlicht: Veröffentlicht
+                default: vorgemerkt
+              date:
+                label: Datum
+                type: date
+                format: d.m.Y
+              time:
+                label: Uhrzeit
+                type: text
+                placeholder: "z.B. 18:00 - 22:00"
+                help: "Frei eingeben, z.B. '18:00' oder '18:00 - 22:00'"
+              location:
+                label: Ort / Raum
+                type: text
+              room_link:
+                label: Raum-Zuordnung (Lageplan)
+                type: select
+                empty: Kein Raum
+                options:
+                  type: query
+                  query: site.rooms.toStructure
+                  text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+                  value: "{{ item.id }}"
+              description_de:
+                label: Beschreibung (DE)
+                type: textarea
+              description_en:
+                label: Description (EN)
+                type: textarea
+              images:
+                label: Bilder zur Veranstaltung
+                type: files
+              tags:
+                label: Tags (Komma getrennt)
+                type: text
+                help: "z. B. workshop, ausstellung"
+              initiative:
+                label: Initiative / Kollektiv
+                type: text
+                placeholder: "z.B. interzoen"
+                help: "Name der zugehörigen Initiative (optional)"
+              kapazitaet:
+                label: Kapazität
+                type: number
+              social_1_label:
+                label: Social Link 1 Label
+                type: text
+              social_1_url:
+                label: Social Link 1 URL
+                type: url
+          regular_events:
+            label: Regelmäßige Veranstaltungen / Regular Events
+            type: structure
+            info: "Wiederkehrende Veranstaltungen ohne Datum für die Liste unterhalb der kommenden Veranstaltungen. Neue Einträge werden automatisch zusätzlich als einzelne Dateien im Backend gesichert."
+            columns:
+              title_de: true
+              time: true
+              location: true
+              tags: true
+            fields:
+              event_exceptions:
+                label: Einzelne Termine ändern / absagen
+                type: structure
+                help: "Wähle das ursprüngliche Datum eines einzelnen Termins. Nur dieser Termin wird geändert. Leere Angaben übernehmen die Werte der Reihe. Lösche die Ausnahme, um den ursprünglichen Termin wiederherzustellen."
+                sortBy: original_date asc
+                columns:
+                  original_date: true
+                  cancelled: true
+                  date: true
+                  title_de: true
+                fields:
+                  original_date:
+                    label: Ursprüngliches Datum
+                    type: date
+                    format: d.m.Y
+                    required: true
+                    help: "Das Datum der Wiederholung, die du ändern möchtest. Jedes Datum nur einmal eintragen."
+                  cancelled:
+                    label: Dieser Termin fällt aus
+                    type: toggle
+                    default: false
+                    text: [Nein, Ja]
+                    help: "Der Termin bleibt mit dem Hinweis Fällt aus sichtbar. Alle anderen Wiederholungen finden weiterhin statt."
+                  date:
+                    label: Abweichendes Datum
+                    type: date
+                    format: d.m.Y
+                  title_de:
+                    label: Abweichender Titel (DE)
+                    type: text
+                  title_en:
+                    label: Abweichender Titel (EN)
+                    type: text
+                  time:
+                    label: Abweichende Uhrzeit (DE)
+                    type: text
+                  time_en:
+                    label: Abweichende Uhrzeit (EN)
+                    type: text
+                  location:
+                    label: Abweichender Ort
+                    type: text
+                  room_link:
+                    label: Abweichender Raum (Lageplan)
+                    type: select
+                    options:
+                      type: query
+                      query: site.rooms.toStructure
+                      text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+                      value: "{{ item.id }}"
+                  description_de:
+                    label: Beschreibung / Absagegrund (DE)
+                    type: textarea
+                  description_en:
+                    label: Description / cancellation reason (EN)
+                    type: textarea
+                  images:
+                    label: Abweichende Bilder
+                    type: files
+                  tags:
+                    label: Abweichende Tags
+                    type: text
+                  initiative_link:
+                    label: Abweichende Initiative
+                    type: select
+                    options:
+                      type: query
+                      query: site.initiativen.toStructure
+                      text: "{{ item.title_de.or(item.title_en) }}"
+                      value: "{{ item.title_de.or(item.title_en) }}"
+                  kapazitaet:
+                    label: Abweichende Kapazität
+                    type: number
+                  social_1_label:
+                    label: Link 1 Text
+                    type: text
+                  social_1_url:
+                    label: Link 1 URL
+                    type: url
+                  social_2_label:
+                    label: Link 2 Text
+                    type: text
+                  social_2_url:
+                    label: Link 2 URL
+                    type: url
+              title_de:
+                label: Titel (DE)
+                type: text
+              title_en:
+                label: Title (EN)
+                type: text
+              date:
+                label: Startdatum
+                type: date
+                format: d.m.Y
+                required: true
+                help: "Erstes Datum der Reihe für die wiederholenden Veranstaltungen"
+              time:
+                label: Uhrzeit / Rhythmus
+                type: text
+                placeholder: "z.B. jeden Donnerstag, 19:00"
+              time_en:
+                label: Time / Rhythm (EN)
+                type: text
+                placeholder: "e.g. every Thursday, 7:00 pm"
+              location:
+                label: Ort / Raum
+                type: text
+              room_link:
+                label: Raum-Zuordnung (Lageplan)
+                type: select
+                empty: Kein Raum
+                options:
+                  type: query
+                  query: site.rooms.toStructure
+                  text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+                  value: "{{ item.id }}"
+              description_de:
+                label: Beschreibung (DE)
+                type: textarea
+              description_en:
+                label: Description (EN)
+                type: textarea
+              images:
+                label: Bilder zur Veranstaltung
+                type: files
+              tags:
+                label: Tags (Komma getrennt)
+                type: text
+                help: "z. B. workshop, ausstellung"
+              initiative_link:
+                label: Initiative / Kollektiv (Verknüpfen)
+                type: select
+                empty: Keine Initiative
+                options:
+                  type: query
+                  query: site.initiativen.toStructure
+                  text: "{{ item.title_de.or(item.title_en) }}"
+                  value: "{{ item.title_de.or(item.title_en) }}"
+              initiative:
+                label: Initiative / Kollektiv (Freitext)
+                type: text
+                placeholder: "z.B. interzoen"
+                help: "Optional, falls keine Auswahl genutzt wird"
+              wiederholung:
+                label: Wiederholung
+                type: select
+                options:
+                  none: Keine
+                  daily: Täglich
+                  weekly: Wöchentlich
+                  monthly: Monatlich
+                default: none
+              wiederholen_bis:
+                label: Wiederholen bis
+                type: date
+                format: d.m.Y
+                help: "Enddatum erforderlich bei Wiederholung (täglich, wöchentlich, monatlich)"
+              social_1_label:
+                label: Social Link 1 Label
+                type: text
+              social_1_url:
+                label: Social Link 1 URL
+                type: url
+              social_2_label:
+                label: Social Link 2 Label
+                type: text
+              social_2_url:
+                label: Social Link 2 URL
+                type: url
+
+  initiativen:
+    label: Initiativen
+    icon: box
+    sections:
+      initiativen_section:
+        type: fields
+        fields:
+          heading_initiatives_de:
+            label: Überschrift Initiativen (DE)
+            type: text
+            default: Initiativen
+          heading_initiatives_en:
+            label: Initiatives Heading (EN)
+            type: text
+            default: Initiatives
+          initiativen:
+            label: Initiativen / Kollektive
+            type: structure
+            info: "Jedes Element repräsentiert eine Initiative / Kollektiv"
+            columns:
+              title_de: true
+              studio: true
+              email: true
+            fields:
+              title_de:
+                label: Titel (DE)
+                type: text
+              title_en:
+                label: Title (EN)
+                type: text
+              subtitle_de:
+                label: Untertitel (DE)
+                type: text
+              subtitle_en:
+                label: Subtitle (EN)
+                type: text
+              description_de:
+                label: Beschreibung (DE)
+                type: textarea
+              description_en:
+                label: Description (EN)
+                type: textarea
+              images:
+                label: Galerie-Bilder
+                type: files
+              studio:
+                label: Zugewiesener Raum
+                type: select
+                empty: Keine
+                options:
+                  type: query
+                  query: site.rooms.toStructure
+                  text: "{{ item.label_de.or(item.label_en).or(item.id) }}"
+                  value: "{{ item.id }}"
+              oeffnungszeiten:
+                label: Öffnungszeiten
+                type: structure
+                fields:
+                  tag:
+                    label: Tag
+                    type: text
+                  tag_en:
+                    label: Day (EN)
+                    type: text
+                  zeiten:
+                    label: Zeiten
+                    type: text
+              webseiten:
+                label: Webseiten
+                type: structure
+                fields:
+                  label:
+                    label: Label
+                    type: text
+                    placeholder: "z.B. Hauptseite"
+                  url:
+                    label: URL
+                    type: url
+              webseite:
+                label: Webseite
+                type: url
+              email:
+                label: E‑Mail
+                type: email
+              social_1_label:
+                label: Social Link 1 Label
+                type: text
+              social_1_url:
+                label: Social Link 1 URL
+                type: url
+              social_2_label:
+                label: Social Link 2 Label
+                type: text
+              social_2_url:
+                label: Social Link 2 URL
+                type: url
+              social_3_label:
+                label: Social Link 3 Label
+                type: text
+              social_3_url:
+                label: Social Link 3 URL
+                type: url
+              tags:
+                label: Tags (Komma getrennt)
+                type: text
+                help: "Optionale Stichworte für Filter (z. B. film, literatur)"
+              tags_en:
+                label: Tags (EN, comma separated)
+                type: text
+                help: "Optional keywords for filters (e.g. film, literature)"
+
+  lageplan:
+    label: Lageplan
+    icon: map
+    sections:
+      lageplan_section:
+        type: fields
+        fields:
+          heading_lageplan_de:
+            label: Überschrift Lageplan (DE)
+            type: text
+            default: Lageplan
+          heading_lageplan_en:
+            label: Location Plan Heading (EN)
+            type: text
+            default: Location Plan
+          lageplan_image:
+            label: Lageplan Bild
+            type: files
+            max: 1
+            uploads: true
+            help: "Upload des Lageplans (JPG, PNG, WebP etc.)"
+          lageplan_wegbeschreibung:
+            label: Wegbeschreibung
+            type: textarea
+          lageplan_googlemaps_embed:
+            label: Google Maps Einbettung (HTML/iframe)
+            type: textarea
+            buttons: false
+            help: "Füge hier den Google-Maps Embed-Code oder iframe ein."
+
+  kontakt:
+    label: Kontakt
+    icon: email
+    sections:
+      contact:
+        type: fields
+        fields:
+          heading_contact_de:
+            label: Überschrift Kontakt (DE)
+            type: text
+            default: Kontakt
+          heading_contact_en:
+            label: Contact Heading (EN)
+            type: text
+            default: Contact
+          contacts:
+            label: Kontaktinformationen
+            type: structure
+            fields:
+              name:
+                label: Name
+                type: text
+              name_en:
+                label: Name (EN)
+                type: text
+              email:
+                label: E‑Mail
+                type: email
+              link:
+                label: Link
+                type: url
+              link_label:
+                label: Link-Label
+                type: text
+              phone:
+                label: Telefon
+                type: tel
+              role:
+                label: Rolle / Beschreibung
+                type: text
+              role_en:
+                label: Role / Description (EN)
+                type: text
+
+  info:
+    label: Info
+    icon: info
+    sections:
+      info_section:
+        type: fields
+        fields:
+          heading_info_de:
+            label: Überschrift Info (DE)
+            type: text
+            default: Info
+          heading_info_en:
+            label: Info Heading (EN)
+            type: text
+            default: Info
+          dondorf_info_de:
+            label: Dondorf Info Text (DE) (erscheint über dem Footer)
+            type: textarea
+          dondorf_info_en:
+            label: Dondorf Info Text (EN) (appears above the footer)
+            type: textarea
+          imprint_title_de:
+            label: Impressum Titel (DE)
+            type: text
+            default: Impressum
+          imprint_title_en:
+            label: Imprint Title (EN)
+            type: text
+            default: Imprint
+          imprint_de:
+            label: Impressum Inhalt (DE)
+            type: textarea
+          imprint_en:
+            label: Imprint Content (EN)
+            type: textarea
+
+  buchungen:
+    label: Anfragen
+    icon: calendar
+    sections:
+      stats:
+        type: info
+        theme: info
+        text: "{{ site.find('bookings').children.count }} Anfragen insgesamt"
+      bookings_list:
+        type: pages
+        headline: Alle Anfragen
+        parent: site.find("bookings")
+        status: all
+        template: booking
+        layout: list
+        sortBy: date desc
+        size: small
+        info: "{{ page.date.toDate('d.m.Y') }} · {{ page.status }}"
+        text: |
+          {{ page.name }}
+          {{ page.email }}
+        query: site.find("bookings").children
+        sortable: true
+        max: null
+        create: false
+        delete: true
+
+  newsletter:
+    label: Newsletter
+    icon: email
+    sections:
+      email_copy:
+        type: info
+        theme: positive
+        text: |
+          {{ site.find("newsletter").children.count }} Abonnenten
+
+          {{ site.find("newsletter").children.pluck('email').join(', ') }}
+      newsletter_list:
+        type: pages
+        headline: Alle E-Mail-Adressen
+        parent: site.find("newsletter")
+        status: all
+        template: newsletter-subscription
+        layout: list
+        size: tiny
+        query: site.find("newsletter").children
+        sortable: true
+        max: null
+        create: false
+        delete: true
+
+  einstellungen:
+    label: Einstellungen
+    icon: cog
+    sections:
+      stats_section:
+        type: fields
+        fields:
+          stats_info:
+            type: info
+            label: Seitenaufrufe (Letzte 6 Monate)
+            theme: info
+            text: "{{ site.statsOverview }}"
+          seo_info:
+            type: info
+            theme: info
+            text: "SEO-Einstellungen für Meta-Tags und Social Sharing"
+          meta_title:
+            label: Meta Title
+            type: text
+            help: Optional. Fallback ist der Site-Titel.
+          meta_description:
+            label: Meta Description
+            type: textarea
+            buttons: false
+            maxlength: 160
+            help: Kurzbeschreibung für Suchmaschinen (ca. 140-160 Zeichen).
+          meta_keywords:
+            label: Meta Keywords
+            type: tags
+            help: Optional. Stichwörter für die Seite.
+          og_image:
+            label: Open Graph Bild
+            type: files
+            max: 1
+            multiple: false
+            uploads: true
+            help: Wird für Link-Vorschauen (Facebook, LinkedIn etc.) verwendet.

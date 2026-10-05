@@ -1,0 +1,217 @@
+/* Collective Cards Styles */
+.collectives-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  .collectives-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.collective-card {
+  border: 1px solid var(--primary-color);
+  background: var(--background-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.collective-card.expanded {
+  grid-column: 1 / -1;
+}
+
+.collective-header {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s;
+}
+
+.collective-header:hover {
+  background: rgba(61, 92, 80, 0.05);
+}
+
+.collective-title-group {
+  flex: 1;
+}
+
+.collective-title {
+  font-size: var(--text-lg);
+  margin: 0 0 4px 0;
+}
+
+.collective-subtitle {
+  font-size: var(--text-sm);
+  color: #666;
+  margin: 0;
+}
+
+.collective-toggle {
+  background: none;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.collective-toggle:hover {
+  background: var(--color-red, #b94329);
+  color: var(--background-color);
+}
+
+.collective-content {
+  display: none;
+  padding: 20px 20px 20px 20px;
+  border-top: 1px solid var(--primary-color);
+}
+
+.collective-card.expanded .collective-content {
+  display: block;
+}
+
+.collective-card.expanded .collective-toggle {
+  transform: rotate(45deg);
+}
+
+/* Gallery */
+.collective-gallery {
+  margin-bottom: 24px;
+}
+
+.collective-gallery-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 12px 0;
+  scroll-behavior: smooth;
+  max-width: 100%;
+}
+
+.collective-gallery-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.collective-gallery-scroll::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.collective-gallery-scroll::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+.collective-gallery-image {
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid var(--text-color);
+}
+
+/* Details Grid */
+.collective-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.collective-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.collective-detail-label {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: var(--text-md);
+}
+
+.collective-detail-value {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.collective-studio-link {
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+/* Add top spacing to the studio/location link only when details are the first child
+   (i.e. there is no gallery above the details). */
+.collective-content > .collective-details:first-child .collective-studio-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+}
+
+.collective-studio-link:hover {
+  color: var(--color-red, #b94329);
+}
+
+.collective-hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.collective-hours-list li {
+  padding: 4px 0;
+  font-size: var(--text-sm);
+}
+
+.collective-description {
+  font-size: var(--text-md);
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .collective-gallery-image {
+    width: 250px;
+    height: 167px;
+  }
+
+  .collective-card.expanded {
+    grid-column: 1;
+    max-width: 100%;
+  }
+
+    .collective-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .collective-content {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .collective-gallery {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Filter Styles */
+.filter-section { margin-bottom: 12px; }
+.filter-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-weight: 600; color: var(--primary-color); }
+.filter-tag-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 6px; }
+.filter-tag-item { display: flex; align-items: center; gap: 6px; font-size: var(--text-sm); }
+.filter-tag-item input { accent-color: var(--primary-color); }

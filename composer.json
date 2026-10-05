@@ -1,0 +1,33 @@
+{
+  "name": "dondorf/dondorf-dummy",
+  "description": "Sanitized showcase of a bilingual Kirby 5 event website (sample content only).",
+  "type": "project",
+  "keywords": [
+    "kirby",
+    "cms",
+    "php",
+    "showcase",
+    "demo"
+  ],
+  "license": "proprietary",
+  "require": {
+    "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+    "getkirby/cms": "^5.0",
+    "mzur/kirby-uniform": "^5.7"
+  },
+  "config": {
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    },
+    "optimize-autoloader": true
+  },
+  "extra": {
+    "kirby-cms-path": "kirby"
+  },
+  "scripts": {
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php -S localhost:8000 kirby/router.php"
+    ]
+  }
+}

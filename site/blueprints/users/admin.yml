@@ -1,0 +1,26 @@
+title: Administrator
+
+permissions:
+  access:
+    panel: true
+    users: true
+    site: true
+    settings: true
+  pages: true
+  files: true
+  users:
+    create: true
+    update: true
+    delete: true
+    changeRole: true
+    changeEmail: true
+    changeLanguage: true
+    changeName: true
+    changePassword: true
+
+sections:
+  info:
+    type: info
+    theme: positive
+    text: |
+      Administrator mit vollen Berechtigungen

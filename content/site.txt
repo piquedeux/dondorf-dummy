@@ -1,0 +1,208 @@
+Title: Demo Space
+
+----
+
+Heading-welcome-de: Demo Space
+
+----
+
+Heading-welcome-en: Demo Space
+
+----
+
+Welcome-subtitle-de: Ein Ort zum Arbeiten, Gestalten und Vernetzen
+
+----
+
+Welcome-subtitle-en: A place to work, create and connect
+
+----
+
+Aufmacher-text-de:
+
+Dies ist ein Demonstrationsprojekt. Es zeigt den Aufbau einer Kirby-Website mit zweisprachigen Inhalten, einem Veranstaltungskalender, einem Buchungsformular und einer Newsletter-Anmeldung.
+
+Alle Inhalte in diesem Repository sind Platzhalter.
+
+----
+
+Aufmacher-text-en:
+
+This is a demonstration project. It shows the structure of a Kirby website with bilingual content, an event calendar, a booking form and a newsletter signup.
+
+All content in this repository is placeholder data.
+
+----
+
+Aufmacher-toggle-de: Mehr erfahren
+
+----
+
+Aufmacher-toggle-en: Discover more
+
+----
+
+Heading-events-de: Veranstaltungen
+
+----
+
+Heading-events-en: Events
+
+----
+
+Events:
+
+-
+  title_de: 'Demo-Veranstaltung'
+  title_en: 'Demo event'
+  date: 01.01.2027
+  time: '18:00-21:00'
+  location: 'Demo Room, Example Street 1'
+  room_link: studio-01
+  description_de: 'Eine Beispielveranstaltung zur Demonstration des Kalenders.'
+  description_en: 'A sample event to demonstrate the calendar.'
+  images: []
+  tags: 'demo, example'
+  initiative: 'Demo Initiative'
+  wiederholung: none
+  wiederholen_bis: ''
+  kapazitaet: '30'
+  social_1_label: ''
+  social_1_url: ''
+  initiative_link: ''
+
+----
+
+Heading-initiatives-de: Initiativen
+
+----
+
+Heading-initiatives-en: Initiatives
+
+----
+
+Subtitle-de: Wer den Raum nutzt
+
+----
+
+Subtitle-en: Who uses the space
+
+----
+
+Studio:
+
+-
+  oeffnungszeiten: 'Mo–Fr 10–18'
+  tag: Montag
+  tag_en: Monday
+  zeiten: '10:00-18:00'
+  tags_en: demo
+  webseiten:
+    -
+      label: 'Demo Initiative'
+      url: 'https://example.com'
+      webseite: 'https://example.com'
+      email: 'hello@example.com'
+      social_3_label: ''
+      social_3_url: ''
+
+----
+
+Heading-lageplan-de: Lageplan
+
+----
+
+Heading-lageplan-en: Floor plan
+
+----
+
+Lageplan-wegbeschreibung: Beispielhafte Wegbeschreibung zum Veranstaltungsort.
+
+----
+
+Heading-contact-de: Kontakt
+
+----
+
+Heading-contact-en: Contact
+
+----
+
+Contacts:
+
+-
+  name: 'Max Mustermann'
+  name_en: 'Jane Doe'
+  role: 'Projektleitung'
+  role_en: 'Project lead'
+  email: 'hello@example.com'
+  phone: '+49 00 000000'
+  link: 'https://example.com'
+  link_label: 'Website'
+-
+  name: 'Erika Mustermann'
+  name_en: 'John Doe'
+  role: 'Presse'
+  role_en: 'Press'
+  email: 'press@example.com'
+  phone: ''
+  link: ''
+  link_label: ''
+
+----
+
+Heading-info-de: Info
+
+----
+
+Heading-info-en: Info
+
+----
+
+Dondorf-info-de:
+
+Ein Beispieltext über das Projekt. Platzhalter.
+
+----
+
+Dondorf-info-en:
+
+A sample text about the project. Placeholder.
+
+----
+
+Imprint-title-de: Impressum
+
+----
+
+Imprint-title-en: Imprint
+
+----
+
+Imprint-de:
+
+Demo Space gGmbH
+Example Street 1
+00000 Example City
+hello@example.com
+
+----
+
+Imprint-en:
+
+Demo Space gGmbH
+Example Street 1
+00000 Example City
+hello@example.com
+
+----
+
+Meta-title: 'Demo Space — Kirby Showcase'
+
+----
+
+Meta-description: 'A sanitized Kirby 5 website setup used as a public showcase.'
+
+----
+
+Meta-keywords: 'kirby, php, cms, showcase, demo'
